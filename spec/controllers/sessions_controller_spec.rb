@@ -11,6 +11,8 @@ describe SessionsController do
       expect(assigns(:user)).to eq(user)
       expect(assigns(:user).access_token).to be_present
       expect(assigns(:errors)).to eq([])
+
+      expect(response.status).to be(200)
     end
 
     it "should respond with an error upon failed authentication" do
@@ -19,6 +21,8 @@ describe SessionsController do
       expect(assigns(:user)).to eq(user)
       expect(assigns(:user).access_token).to_not be_present
       expect(assigns(:errors)).to eq(["authentication failed"])
+
+      expect(response.status).to be(401)
     end
   end
 

@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
       @user.generate_access_token
     else
       @errors << "authentication failed"
+      respond_with @errors, status: 401
     end
   end
 
