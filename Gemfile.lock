@@ -28,6 +28,7 @@ GEM
     angularjs-rails (1.2.13)
     arel (4.0.2)
     atomic (1.1.14)
+    bcrypt-ruby (3.0.1)
     builder (3.1.4)
     coderay (1.1.0)
     coffee-rails (4.0.1)
@@ -145,6 +146,7 @@ PLATFORMS
 
 DEPENDENCIES
   angularjs-rails
+  bcrypt-ruby (~> 3.0.0)
   coffee-rails (~> 4.0.0)
   factory_girl_rails
   haml (~> 4.0.5)

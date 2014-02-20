@@ -9,7 +9,8 @@ describe User do
     expect(build(:user, email: nil)).to_not be_valid
   end
 
-  it "should validate on password"
-
+  it "should validate on password" do
+    expect( build(:user, password: nil) ).to_not be_valid
+  end
 
 end
