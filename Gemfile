@@ -14,17 +14,15 @@ gem 'jbuilder', '~> 1.2'
 gem 'haml', '~> 4.0.5'
 gem 'angularjs-rails'
 
+gem "pry"
+gem 'rspec-rails', '~> 3.0.0.beta'
+gem 'factory_girl_rails'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
 
-group :development do
-  gem "pry"
-end
-
-gem 'rspec-rails', '~> 3.0.0.beta'
-gem 'factory_girl_rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
