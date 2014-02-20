@@ -1,2 +1,6 @@
-%p{ "ng-controller" => "timeCtrl" }
-  scope.hello is: {{ hello }}
+.entries{ "ng-controller" => "timeCtrl" }
+  {{ entries }}
+  .entry{ "ng-repeat" => "entry in entries" }
+    {{ entry.started_at }}
+
+  = link_to "stuff", "#", { "ng-action" => "createEntry"}
