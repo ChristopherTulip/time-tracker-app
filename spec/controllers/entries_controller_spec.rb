@@ -21,7 +21,18 @@ describe EntriesController do
       get :index, user_id: user, format: :json
     end
 
-    it { expect(assigns(:entries).count).to be(3) }
+    describe "json response" do
+      render_views
+      it "should recieve a correct json response" do
+        @body = JSON.parse(response.body)
+
+        expect( @body.count ).to be(3)
+        expect( @body.first["id"] ).to eq(entry1.id)
+        expect( @body.first["started_at"] ).to eq(entry1.started_at.to_formatted_s(:short))
+        expect( @body.first["ended_at"] ).to eq(entry1.ended_at.to_formatted_s(:short))
+      end
+    end
+
     it { expect(response.status).to be(200) }
   end
 
@@ -34,6 +45,11 @@ describe EntriesController do
 
     it { expect(Entry.all.count).to be(1) }
     it { expect(response.status).to be(200) }
+
+    describe "json response" do
+      render_views
+      it "should recieve a correct json response"
+    end
   end
 
   describe "entries#update" do
@@ -47,6 +63,11 @@ describe EntriesController do
     it { expect(assigns(:entry)).to eq(entry) }
     it { expect(assigns(:entry).ended_at).to eq(@time) }
     it { expect(response.status).to be(200) }
+
+    describe "json response" do
+      render_views
+      it "should recieve a correct json response"
+    end
   end
 
   describe "entries#destroy" do
@@ -59,6 +80,11 @@ describe EntriesController do
     it { expect(assigns(:entry)).to eq(entry) }
     it { expect(Entry.all.count).to be(0)     }
     it { expect(response.status).to be(200)   }
+
+    describe "json response" do
+      render_views
+      it "should recieve a correct json response"
+    end
   end
 
 end
