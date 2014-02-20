@@ -3,6 +3,10 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.0'
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of bdbb615... added devise.. that was a mistake
 
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -13,7 +17,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'haml', '~> 4.0.5'
 gem 'angularjs-rails'
 
-gem 'pry'
+gem "pry"
 gem 'rspec-rails', '~> 3.0.0.beta'
 gem 'factory_girl_rails'
 
