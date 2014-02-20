@@ -18,7 +18,7 @@ describe EntriesController do
     let!(:entry3) { create(:entry) }
 
     before do
-      get :index, user_id: user, format: :json
+      get :index, user_id: user, access_token: user.access_token, format: :json
     end
 
     describe "json response" do
@@ -40,7 +40,7 @@ describe EntriesController do
     let(:user)   { create(:user)  }
 
     before do
-      post :create, user_id: user, format: :json
+      post :create, user_id: user, access_token: user.access_token, format: :json
     end
 
     it { expect(Entry.all.count).to be(1) }
@@ -57,7 +57,7 @@ describe EntriesController do
 
     before do
       @time = Time.now
-      put :update, user_id: entry.user, id: entry, ended_at: @time, format: :json
+      put :update, user_id: entry.user, id: entry, access_token: entry.user.access_token, ended_at: @time, format: :json
     end
 
     it { expect(assigns(:entry)).to eq(entry) }
@@ -74,7 +74,7 @@ describe EntriesController do
     let(:entry) { create(:entry, ended_at: nil) }
 
     before do
-      delete :destroy, user_id: entry.user, id: entry, format: :json
+      delete :destroy, user_id: entry.user, id: entry, access_token: entry.user.access_token, format: :json
     end
 
     it { expect(assigns(:entry)).to eq(entry) }
