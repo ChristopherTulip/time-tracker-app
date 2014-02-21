@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" ng-app="timetrackApp">
+<head>
+	<meta charset="utf-8">
+	<title>Dingtoggl</title>
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="lib/jquery/jquery-1.10.2.min.js"></script>
+  <script src="lib/angular/angular.min.js"></script>
+  <script src="lib/angular/angular-resource.min.js"></script>
+
+  <script src="js/controllers.js"></script>
+
+</head>
+<body ng-controller="TimeEntryCtrl">
+
+	<div>
+		<div ng-repeat="stat in stats">
+			<span>{{stat.value}}</span>
+			<span>hours this {{stat.name}}</span>
+		</div>
+	</div>
+
+	<div id="timetable">
+		<div id="add-entry">
+			<form ng-submit="addEntry()">
+				<input type="date" placeholder="01/12/2013" ng-model="newEntry.date">
+				<input type="text" placeholder="TAing" ng-model="newEntry.project">
+				<input type="number" placeholder="3" ng-model="newEntry.hours">
+				<input type="text" ng-model="newEntry.comment">
+				<button type="submit">Save</button>
+			</form>
+		</div>
+		<hr>
+		Search: <input ng-model="query">
+		<select ng-model="orderProp">	
+			<option value="-date">Date - Newest -> Oldest</option>
+			<option value="date">Date - Oldest -> Newest</option>
+			<option value="-hours">Hours - Most -> Least</option>
+			<option value="hours">Hours - Least -> Most</option>
+			<option value="project">Project - A -> Z</option>
+			<option value="-project">Project - Z -> A</option>
+		</select>
+		<hr>
+
+		<div ng-repeat="entry in entries | filter:query | orderBy:orderProp">
+			<form ng-submit="editEntry(entry)">
+				<input class="{{entry.project}}" type="date" value="{{entry.date}}" ng-model="entry.date">
+				<input type="text" value="{{entry.project}}" ng-model="entry.project">
+				<input type="number" value="{{entry.hours}}" ng-model="entry.hours">
+				<input type="text" value="{{entry.comment}}" ng-model="entry.comment">
+				<input type="hidden" value="{{entry.id}}" ng-model="entry.id">
+				<button ng-click="deleteEntry(entry)">&#x2717;</button>
+				<button type="submit">&#x2713;</button>
+			</form>
+		</div>
+	</div>
+
+	
+</body>
+
+</html>
