@@ -52,7 +52,7 @@ timetrackApp.controller('TimeEntryCtrl', function ($scope) {
 		 console.log($scope.newEntry);
 		 $scope.newEntry = {};
 		console.log('newEntry');
-		
+
 	};
 
 	$scope.editEntry = function (entry) {
@@ -65,7 +65,7 @@ timetrackApp.controller('TimeEntryCtrl', function ($scope) {
 	$scope.deleteEntry = function (entry) {
 		//send delete message to server to remove entry from database
 
-		
+
 		//find specific entry that changed and remove it
 		var index = $scope.entries.indexOf(entry);
 
@@ -77,3 +77,15 @@ timetrackApp.controller('TimeEntryCtrl', function ($scope) {
 
 	$scope.orderProp = '-date';
 });
+
+// # @timeApp = angular.module "timeApp", []
+
+// # @timeApp.controller 'timeCtrl', ['$scope', '$http',
+// #   ($scope, $http) ->
+// #     $http.get('/entries.json').success( (data) ->
+// #         $scope.entries = data
+// #       ).error( (data) ->
+// #         $scope.entries = "ERROR I THINK I FAILED"
+// #       )
+// # ]
+
