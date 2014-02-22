@@ -1,6 +1,44 @@
-.entries{ "ng-controller" => "timeCtrl" }
-  {{ entries }}
-  .entry{ "ng-repeat" => "entry in entries" }
-    {{ entry.started_at }}
+%div{ "ng-repeat"=>"stat in stats" }
+  %span {{stat.value}}
+  %span hours this {{stat.name}}
 
-  = link_to "stuff", "#", { "ng-action" => "createEntry"}
+#timetable
+  #add-entry
+    = form_tag("#", {"ng-submit"=>"addEntry()"}) do
+      = date_field(:entry, :date, { "ng-model"=>"newEntry.date" } )
+      = text_field(:entry, :project, { "ng-model"=>"newEntry.project" } )
+      = number_field(:entry, :hours, { "ng-model"=>"newEntry.hours" } )
+      = text_field(:entry, :comment, { "ng-model"=>"newEntry.comment" } )
+      = submit_tag("Save")
+
+  %hr
+
+  Search:
+  %input{ "ng-model" => "query" }
+  %select{ "ng-model" => "orderProp" }
+    %option{ "value"=>"-date" } Date - Newest -> Oldest
+    %option{ "value"=>"date" } Date - Oldest -> Newest
+    %option{ "value"=>"-hours" } Hours - Most -> Least
+    %option{ "value"=>"hours" } Hours - Least -> Most
+    %option{ "value"=>"project" } Project - A -> Z
+    %option{ "value"=>"-project" } Project - Z -> A
+
+  %hr
+
+  %div{ "ng-repeat"=>"entry in entries | filter:query | orderBy:orderProp" }
+    %form{ "ng-submit" => "editEntry(entry)" }
+      %input{ "class" => "{{entry.project}}", "type"=>"date", "value"=>"{{entry.date}}", "ng-model" => "entry.date" }
+      %input{ "type"=>"text", "value"=>"{{entry.project}}", "ng-model" => "entry.project" }
+      %input{ "type"=>"number", "value"=>"{{entry.hours}}", "ng-model" => "entry.hours" }
+      %input{ "type"=>"text", "value"=>"{{entry.comment}}", "ng-model" => "entry.comment" }
+      %input{ "type"=>"hidden", "value"=>"{{entry.id}}", "ng-model" => "entry.id" }
+      %button{ "ng-click" => "deleteEntry(entry)" }&#x2717;
+      %button{ "type"=>"submit" }&#x2713;
+
+
+
+
+
+
+
+
